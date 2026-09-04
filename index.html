@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Dries Grasveld · The Urban Jungle Project</title>
+<meta name="description" content="Connect with The Urban Jungle Project — greenery solutions for roofs, façades and public squares.">
+<meta name="theme-color" content="#102B24">
+<link rel="icon" href="data:image/svg+xml,<svg xmlns=%22http://www.w3.org/2000/svg%22 viewBox=%220 0 100 100%22><text y=%22.9em%22 font-size=%2290%22>🌿</text></svg>">
+
+<!-- ═══════════════════════════════════════════════════════════════
+     TODO BEFORE PUBLISHING — see also README.md in this folder
+     1. HubSpot form is live (portal 26582701, form 027e03a9-…).
+        To pass through the ?event=... parameter: add a hidden field
+        with internal name "event_source" to that form — the script
+        at the bottom of this page then fills it in automatically.
+     2. Jungle Blocks® photo, Dries's photo, the TUJP logos and the
+        EU co-funding logo are all in place.
+     3. Video is already set up as the Vimeo embed.
+     4. dries-grasveld.vcf is ready in this folder — update the phone
+        number/address if needed, or duplicate it per contact person.
+     ═══════════════════════════════════════════════════════════════ -->
+
+<link href="https://fonts.googleapis.com/css2?family=Space+Mono:wght@400;700&display=swap" rel="stylesheet">
+
+<style>
+  :root{
+    --ink:#102B24;        /* Deep Green — primary dark surface */
+    --ink-soft:#2C443D;   /* Soft Deep Green — secondary dark surface */
+    --accent:#DFFF6A;     /* Bright Yellow, punchy — CTAs / highlights */
+    --accent-soft:#ECFDAF;/* Bright Yellow, soft — tints, quote */
+    --line:#CCD1C9;       /* Green Grey — borders on light */
+    --paper:#F5F5F5;      /* Light Grey — page ground */
+    --white:#FFFFFF;
+
+    --white-60: rgba(255,255,255,.6);
+    --white-35: rgba(255,255,255,.35);
+
+    --sans: -apple-system, BlinkMacSystemFont, "Helvetica Neue", Helvetica, Arial, sans-serif;
+    --mono: 'Space Mono', ui-monospace, SFMono-Regular, Menlo, monospace;
+
+    --radius-lg: 35px;
+    --radius-md: 22px;
+    --radius-sm: 14px;
+  }
+
+  *{ box-sizing:border-box; }
+  body{
+    margin:0;
+    background: var(--paper);
+    background-image: radial-gradient(60% 45% at 50% 0%, var(--accent-soft) 0%, transparent 65%);
+    background-repeat:no-repeat;
+    font-family: var(--sans);
+    color: var(--ink);
+    min-height:100vh;
+    display:flex;
+    justify-content:center;
+    padding: 28px 16px 48px;
+  }
+
+  @media (prefers-reduced-motion: no-preference){
+    .reveal{ opacity:0; transform: translateY(14px); transition: opacity .6s ease, transform .6s ease; }
+    .reveal.in{ opacity:1; transform:none; }
+  }
+
+  .card{
+    width:100%;
+    max-width:460px;
+    background: var(--white);
+    border-radius: var(--radius-lg);
+    overflow:hidden;
+    box-shadow: 0 1px 2px rgba(16,43,36,.06), 0 24px 48px -20px rgba(16,43,36,.28);
+  }
+
+  section{ padding: 26px 22px; }
+
+  .sec-hero{ background: var(--ink); position:relative; overflow:hidden; padding-top:28px; }
+  .wordmark{ position:relative; display:block; width:184px; margin-bottom:22px; }
+  .wordmark img{ display:block; width:100%; height:auto; }
+  .eyebrow{ position:relative; font-family: var(--mono); font-size:10px; font-weight:700; letter-spacing:.18em; text-transform:uppercase; color: var(--accent); margin-bottom:10px; }
+  .hero-title{ position:relative; font-size:30px; font-weight:700; line-height:1.12; letter-spacing:-.01em; color: var(--accent-soft); margin-bottom:12px; }
+  .hero-title .accent-word{ color: var(--accent-soft); }
+  .hero-sub{ position:relative; font-size:14px; line-height:1.55; color: var(--white-60); max-width: 34ch; }
+
+  .sec-contact{ display:flex; align-items:center; gap:13px; border-bottom: 1px solid var(--paper); }
+  .avatar{ width:76px; height:76px; border-radius:50%; background: var(--ink); color: var(--accent); display:flex; align-items:center; justify-content:center; font-family: var(--mono); font-size:20px; font-weight:700; flex-shrink:0; overflow:hidden; }
+  .avatar img{ width:100%; height:100%; object-fit:cover; }
+  .contact-name{ font-size:16px; font-weight:700; margin-bottom:2px; }
+  .contact-role{ font-family: var(--mono); font-size:13px; font-weight:700; letter-spacing:.02em; color: var(--ink-soft); margin-bottom:4px; }
+  .contact-email{ font-size:12px; color:#6b7a73; }
+
+  .sec-cta{ padding-top:20px; padding-bottom:8px; }
+  .cta-btn{ width:100%; display:flex; align-items:center; justify-content:space-between; gap:10px; background: var(--accent); border:none; border-radius:50px; padding:15px 22px; font-family: var(--sans); font-size:14.5px; font-weight:700; color: var(--ink); text-decoration:none; transition: transform .15s ease; }
+  .cta-btn:hover{ transform: translateY(-1px); }
+  .cta-arrow{ font-size:16px; }
+  .cta-sub{ font-family: var(--mono); font-size:9.5px; letter-spacing:.04em; color: var(--ink-soft); text-align:center; padding-top:9px; }
+
+  .sec-video{ padding-top:8px; }
+  .video-block{ background: var(--ink); border-radius: var(--radius-md); overflow:hidden; position:relative; width:100%; aspect-ratio: 16 / 9; }
+  .video-block iframe{ position:absolute; inset:0; width:100%; height:100%; border:0; }
+  .video-label{ font-family: var(--mono); font-size:9.5px; letter-spacing:.05em; color: var(--white-35); }
+
+  .sec-label{ font-family: var(--mono); font-size:9.5px; letter-spacing:.14em; text-transform:uppercase; color: var(--ink-soft); padding: 22px 22px 0; }
+
+  .sec-stats{ padding-top:10px; }
+  .stats-grid{ display:grid; grid-template-columns:1fr 1fr; gap:8px; }
+  .stat-card{ background: var(--paper); border-radius: var(--radius-sm); padding:13px 14px 11px; }
+  .stat-num{ font-size:20px; font-weight:700; line-height:1; margin-bottom:4px; font-variant-numeric: tabular-nums; }
+  .stat-lbl{ font-family: var(--mono); font-size:8.5px; letter-spacing:.05em; text-transform:uppercase; color: var(--ink-soft); }
+
+  .sec-product{ padding-top:10px; }
+  .product-block{ background: var(--ink); border-radius: var(--radius-md); padding:18px 18px 20px; }
+  .product-title{ font-size:17px; font-weight:700; color: var(--accent); margin-bottom:11px; }
+  .photo-slot{ background: rgba(255,255,255,.05); border-radius: var(--radius-sm); height:150px; display:flex; align-items:center; justify-content:center; margin-bottom:11px; position:relative; overflow:hidden; }
+  .photo-slot img{ position:absolute; inset:0; width:100%; height:100%; object-fit:cover; }
+  .photo-slot-text{ font-family: var(--mono); font-size:9px; letter-spacing:.06em; text-transform:uppercase; color: var(--white-35); }
+  .product-desc{ font-size:12.5px; line-height:1.55; color: var(--white-60); margin-bottom:12px; }
+  .product-tags{ display:flex; flex-wrap:wrap; gap:6px; }
+  .product-tag{ font-family: var(--mono); font-size:9px; padding:4px 10px; border-radius:20px; background: rgba(223,255,106,.12); color: var(--accent); letter-spacing:.03em; }
+
+  .sec-form{ padding-top:10px; padding-bottom:8px; }
+  .form-title{ font-size:15px; font-weight:700; margin-bottom:3px; }
+  .form-sub{ font-size:12px; line-height:1.5; color:#6b7a73; margin-bottom:14px; }
+
+  /* HubSpot form — override its default stylesheet so type matches the card's scale */
+  #hsFormSlot, #hsFormSlot form{ font-family: var(--sans) !important; }
+  #hsFormSlot .hs-form-field{ margin-bottom:9px !important; }
+  #hsFormSlot label{
+    font-family: var(--mono) !important;
+    font-size:8.5px !important;
+    letter-spacing:.06em !important;
+    text-transform:uppercase !important;
+    color: var(--ink-soft) !important;
+    margin-bottom:4px !important;
+    display:block !important;
+  }
+  #hsFormSlot input[type="text"],
+  #hsFormSlot input[type="email"],
+  #hsFormSlot input[type="tel"],
+  #hsFormSlot textarea,
+  #hsFormSlot select{
+    width:100% !important;
+    padding:11px 13px !important;
+    border-radius:10px !important;
+    border:1px solid var(--line) !important;
+    background: var(--paper) !important;
+    font-size:13px !important;
+    font-family: var(--sans) !important;
+    color: var(--ink) !important;
+    line-height:1.4 !important;
+    box-sizing:border-box !important;
+  }
+  #hsFormSlot input[type="text"]:focus,
+  #hsFormSlot input[type="email"]:focus,
+  #hsFormSlot input[type="tel"]:focus,
+  #hsFormSlot textarea:focus{
+    outline:none !important;
+    border-color: var(--ink) !important;
+    background: var(--white) !important;
+  }
+  #hsFormSlot .hs-button{
+    width:100% !important;
+    padding:13px !important;
+    border-radius:50px !important;
+    background: var(--ink) !important;
+    color: var(--accent) !important;
+    font-size:13.5px !important;
+    font-weight:700 !important;
+    font-family: var(--sans) !important;
+    border:none !important;
+    margin-top:4px !important;
+    cursor:pointer !important;
+  }
+  #hsFormSlot .hs-error-msgs{ list-style:none !important; margin:4px 0 0 !important; padding:0 !important; }
+  #hsFormSlot .hs-error-msgs label{
+    font-family: var(--sans) !important;
+    text-transform:none !important;
+    letter-spacing:0 !important;
+    font-size:11px !important;
+    color:#c0392b !important;
+  }
+  #hsFormSlot .hs-richtext, #hsFormSlot .legal-consent-container{
+    font-size:11px !important;
+    line-height:1.5 !important;
+    color:#6b7a73 !important;
+  }
+  #hsFormSlot .submitted-message{
+    font-size:12.5px !important;
+    line-height:1.5 !important;
+    color: var(--ink) !important;
+  }
+
+  .sec-footer{ background: var(--ink); padding: 22px 22px 24px; text-align:center; }
+  .footer-quote{ font-size:13px; font-style:italic; color: var(--accent-soft); line-height:1.55; margin-bottom:10px; max-width:30ch; margin-inline:auto; }
+  .footer-addr{ font-family: var(--mono); font-size:9.5px; color: var(--white-35); letter-spacing:.04em; line-height:1.9; margin-bottom:16px; }
+  .footer-mark{ width:34px; margin-inline:auto; opacity:.9; }
+  .footer-mark img{ display:block; width:100%; height:auto; }
+  .footer-eu{ display:inline-block; margin-top:18px; background: var(--white); border-radius:10px; padding:9px 12px; }
+  .footer-eu img{ display:block; width:148px; height:auto; }
+</style>
+</head>
+<body>
+
+<div class="card">
+
+  <section class="sec-hero reveal">
+    <div class="wordmark"><img src="tujp-logotype.svg" alt="The Urban Jungle Project"></div>
+    <div class="hero-title">Lightweight.<br>Modular.<br>Smart.</div>
+    <p class="hero-sub">Greenery solution for roofs, façades, and public squares — where it seemed technically impossible.</p>
+  </section>
+
+  <section class="sec-contact reveal">
+    <div class="avatar"><img src="dries-grasveld.jpg" alt="Dries Grasveld" width="76" height="76" loading="lazy" decoding="async"></div>
+    <div>
+      <div class="contact-name">Dries Grasveld</div>
+      <div class="contact-role">Chief of Growth · TUJP</div>
+      <div class="contact-email">dries@theurbanjungleproject.com</div>
+      <div class="contact-email">+31 6 10501760</div>
+    </div>
+  </section>
+
+  <section class="sec-cta reveal">
+    <!-- Real .vcf download — works once this file + dries-grasveld.vcf are hosted together. -->
+    <a class="cta-btn" href="dries-grasveld.vcf" download="dries-grasveld.vcf">
+      <span>Save contact details</span>
+      <span class="cta-arrow">→</span>
+    </a>
+    <div class="cta-sub">Straight into your contacts — no app needed</div>
+  </section>
+
+  <section class="sec-video reveal">
+    <div class="video-block">
+      <iframe src="https://player.vimeo.com/video/1195758883?h=5a07bd0e10&dnt=1&autoplay=1&muted=1"
+        title="The Urban Jungle Project — mission"
+        allow="autoplay; fullscreen; picture-in-picture; clipboard-write"
+        allowfullscreen loading="lazy"></iframe>
+    </div>
+  </section>
+
+  <div class="sec-label reveal">Impact in numbers</div>
+  <section class="sec-stats reveal">
+    <div class="stats-grid">
+      <div class="stat-card"><div class="stat-num">250 kg/m²</div><div class="stat-lbl">Max. roof load</div></div>
+      <div class="stat-card"><div class="stat-num">+70</div><div class="stat-lbl">Projects</div></div>
+      <div class="stat-card"><div class="stat-num">+12k m²</div><div class="stat-lbl">Grey → green</div></div>
+      <div class="stat-card"><div class="stat-num">+150k</div><div class="stat-lbl">Water buffer capacity</div></div>
+    </div>
+  </section>
+
+  <div class="sec-label reveal">Our products</div>
+  <section class="sec-product reveal">
+    <div class="product-block">
+      <div class="product-title">Jungle Blocks®</div>
+      <div class="photo-slot"><img src="jungle-blocks.jpg" alt="Jungle Blocks® being hoisted into place on a residential building" loading="lazy" decoding="async"></div>
+      <p class="product-desc">Modular 3D-printed tree planters made from consumer waste (PP) and pre-filled with our lightweight Jungle Mix substrate. Plug-and-play connection, built-in irrigation, no anchoring required — built for roofs with limited load capacity.</p>
+      <div class="product-tags">
+        <span class="product-tag">3D-printed</span>
+        <span class="product-tag">Circular</span>
+        <span class="product-tag">Plug-and-play</span>
+        <span class="product-tag">Sensors</span>
+      </div>
+    </div>
+  </section>
+
+  <div class="sec-label reveal">Get more information</div>
+  <section class="sec-form reveal">
+    <div class="form-title">Get more information</div>
+    <p class="form-sub">Leave your details and we'll send you more information about TUJP and Jungle Blocks®.</p>
+
+    <div id="hsFormSlot"></div>
+    <script charset="utf-8" type="text/javascript" src="//js-eu1.hsforms.net/forms/embed/v2.js"></script>
+    <script>
+      hbspt.forms.create({
+        portalId: "26582701",
+        formId: "027e03a9-17aa-4406-9cbf-de9f728fb909",
+        region: "eu1",
+        target: "#hsFormSlot"
+      });
+    </script>
+  </section>
+
+  <section class="sec-footer reveal">
+    <p class="footer-quote">"A single tree is not a jungle, but every jungle starts with a single tree."</p>
+    <div class="footer-addr">theurbanjungleproject.com<br>Beerseweg 45 · Cuijk · T +31 345 520004</div>
+    <div class="footer-mark"><img src="tujp-logomark.svg" alt="TUJP beeldmerk"></div>
+    <div class="footer-eu"><img src="eu-co-funded.png" alt="Co-funded by the European Union" width="148" height="31" loading="lazy" decoding="async"></div>
+  </section>
+
+</div>
+
+<script>
+  if ('IntersectionObserver' in window) {
+    var io = new IntersectionObserver(function(entries){
+      entries.forEach(function(e){ if (e.isIntersecting) { e.target.classList.add('in'); io.unobserve(e.target); } });
+    }, { threshold: 0.15 });
+    document.querySelectorAll('.reveal').forEach(function(el){ io.observe(el); });
+  } else {
+    document.querySelectorAll('.reveal').forEach(function(el){ el.classList.add('in'); });
+  }
+
+  // Passes ?event=... from the visited URL through to the hidden
+  // "event_source" field once it exists on the HubSpot form.
+  document.addEventListener('DOMContentLoaded', function () {
+    var event = new URLSearchParams(window.location.search).get('event');
+    if (!event) return;
+    var tryFill = setInterval(function () {
+      var field = document.querySelector('input[name="event_source"]');
+      if (field) { field.value = event; clearInterval(tryFill); }
+    }, 300);
+    setTimeout(function () { clearInterval(tryFill); }, 10000);
+  });
+
+</script>
+</body>
+</html>
