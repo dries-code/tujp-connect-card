@@ -1,0 +1,13 @@
+BEGIN:VCARD
+VERSION:3.0
+N:Grasveld;Dries;;;
+FN:Dries Grasveld
+ORG:The Urban Jungle Project
+TITLE:Chief of Growth
+EMAIL;TYPE=INTERNET,WORK:dries@theurbanjungleproject.com
+TEL;TYPE=CELL,VOICE:+31610501760
+TEL;TYPE=WORK,VOICE:+31345520004
+URL:https://theurbanjungleproject.com
+ADR;TYPE=WORK:;;Beerseweg 45;Cuijk;;;Nederland
+NOTE:lightweight. modular. smart. — The Urban Jungle Project
+END:VCARD
